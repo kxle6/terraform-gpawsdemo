@@ -25,49 +25,49 @@ done
 echo "Importing GlobalProtect Agent Bundle"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><global-protect-client><software><download><file>PanGP-4.1.5</file></download></software></global-protect-client></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 ### Install GlobalProtect Agent Bundle ###
 echo "Installing GlobalProtect Agent Bundle"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><global-protect-client><software><activate><file>PanGP-4.1.5</file></activate></software></global-protect-client></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 ### Download latest applications and threats
 echo "Download latest App and Threat updates"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><content><upgrade><download><latest></latest></download></upgrade></content></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 ### Install latest applications and threats without committing
 echo "Install latest App and Threat updates"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><content><upgrade><install><version>latest</version><commit>no</commit></install></upgrade></content></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 ### Download latest anti-virus update
 echo "Download latest AV updates"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><anti-virus><upgrade><download><latest></latest></download></upgrade></anti-virus></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 ### install latest anti-virus update without committing
 echo "Install latest AV updates"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><anti-virus><upgrade><install><version>latest</version><commit>no</commit></install></upgrade></anti-virus></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 ### Download latest WildFire update
 echo "Download latest WildFire updates"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><wildfire><upgrade><download><latest></latest></download></upgrade></wildfire></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 ### Install latest WildFire update without committing
 echo "Install latest WildFire updates"
 curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><wildfire><upgrade><install><version>latest</version><commit>no</commit></install></upgrade></wildfire></request>&user=admin&password=Pal0Alt0@123"
 
-wait 1
+sleep 30s
 
 echo "GlobalProtect is now ready!"
 echo "Firewall credentials:"
