@@ -1,0 +1,2 @@
+Create a keypair using "ssh-keygen -f two_tier_vpc_key -t rsa -N ''".
+If you use a different key name or wish to use existing keys, update the "ServerKeyName" variable in the terraform.tfvars file.
