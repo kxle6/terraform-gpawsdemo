@@ -65,7 +65,7 @@ wait 1
 
 ### Install latest WildFire update without committing
 echo "Install latest WildFire updates"
-curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><wildfire><upgrade><install><version>latest</version><commit>no</commit></install></upgrade></wildfire></request>"
+curl -v -g -k "https://${fw1_mgmt_ip}/api/?type=op&cmd=<request><wildfire><upgrade><install><version>latest</version><commit>no</commit></install></upgrade></wildfire></request>&user=admin&password=Pal0Alt0@123"
 
 wait 1
 
