@@ -50,7 +50,7 @@ If you don't add the S3 bucket name or zone-id, you will be prompted to enter th
 - The web and db subnets have their default routes point the firewall's web and db interface. No need to change default route of the instances from x.x.x.1.
 - Again, change the default password (admin/Pal0Alt0@123) of the firewall!
 
-![Diagram](gpawsdemodiagram.jpg)
+
 
 ### Support:
 This template is a fork of the Palo Alto Networks terraform template and is released under an as-is, best effort, support policy. These scripts should be seen as community supported and will contribute our expertise as and when possible. We do not provide technical support or help in using or troubleshooting the components of the project through our normal support options such as Palo Alto Networks support teams, or ASC (Authorized Support Centers) partners and backline support options. The underlying product used (the VM-Series firewall) by the scripts or templates are still supported, but the support is only for the product functionality and not for help in deploying or using the template or script itself. Unless explicitly tagged, all projects or work posted in our GitHub repository (at https://github.com/PaloAltoNetworks) or sites other than our official Downloads page on https://support.paloaltonetworks.com are provided under the best effort policy.
