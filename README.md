@@ -16,7 +16,7 @@
     
     - terraform.tfvars: Defines default values for all the variables.
 
-Note: The aws_vars.tf has default values provided for certain variables. These can obviously be overridden by specifying those variables and values in the terraform.tfvars file.
+Note: The aws_vars.tf has default values provided for certain variables. These can obviously be overridden by specifying those variables and values in the terraform.tfvars file.  The VM-Series AMI is for PAYG2 PAN-OS 8.1.  Change the AMI if you'd like to use BYOL or different PAN-OS version.
 
 ### Credentials and Authentication:
 Create a file called aws_creds.tf to provide the AWS ACCESS_KEY and SECRET_KEY.
@@ -36,13 +36,16 @@ You can add the Unique S3 bucket name and Route53 Zone ID to the terraform.tfvar
 If you don't add the S3 bucket name or zone-id, you will be prompted to enter them in during deployment.
 
 ### Usage:
+
+In the local folder with the updated Terraform files to include your credentials and any other variables, run the following commands:
+
 `terraform init` 
 
 `terraform apply`
 
-When you are finished with your testing or demo
+When you are finished with your testing or demo, run the following command:
 
-'terraform destroy'
+`terraform destroy`
 
 ### Notes:
 
