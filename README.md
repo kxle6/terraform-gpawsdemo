@@ -16,7 +16,7 @@
     
     - terraform.tfvars: Defines default values for all the variables.
 
-### Note: 
+### Notes: 
 The aws_vars.tf has default values provided for certain variables. These can obviously be overridden by specifying those variables and values in the terraform.tfvars file.  The VM-Series AMI is for PAYG2 PAN-OS 8.1.  Change the AMI if you'd like to use BYOL or different PAN-OS version.
 
 ### Credentials and Authentication:
