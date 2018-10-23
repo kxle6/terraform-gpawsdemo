@@ -1,6 +1,6 @@
 ## Terraform Templates to Deploy GlobalProtect onto AWS
 
-### PreRequisites:
+### Prerequisites:
 
 - To generate new SSH Keys, on a Mac, run the command ssh-keygen -f globalprotect_demo_key -t rsa -N '' in the keys/ directory. On Windows, you can use PuttyGen to generate new SSH keys.
 - Please change the S3 bucket name to a globally unique name. You do not need to create the S3 buckets before running the deployment, new S3 buckets will be created.
