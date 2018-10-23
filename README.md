@@ -1,13 +1,17 @@
 ## Terraform Templates to Deploy GlobalProtect onto AWS
 
 ### PreRequisites:
+
 - To generate new SSH Keys, on a Mac, run the command ssh-keygen -f globalprotect_demo_key -t rsa -N '' in the keys/ directory. On Windows, you can use PuttyGen to generate new SSH keys.
 - Please change the S3 bucket name to a globally unique name. You do not need to create the S3 buckets before running the deployment, new S3 buckets will be created.
 - Please change the default username/password of admin/Pal0Alt0@123 immediately!
 - I did not include my Route53 Zone ID in the config, if you'd like to leverage my template for demo's, feel free to contact me and I'll share.
-- Please see section 2 below pertaining to Credentials and Authentication.
+- The aws_vars.tf has default values provided for certain variables. These can obviously be overridden by specifying those variables and values in the terraform.tfvars file.  
+- The VM-Series AMI is for PAYG2 PAN-OS 8.1.  Change the AMI if you'd like to use BYOL or different PAN-OS version.
+- Please update the necessary Terraform files with your credentials in the Credentials and Authentication section below.
 
 ### Code Organization:
+
     aws_two-tier/
 
     - aws_two_tier.tf: Contains the definition of the various artifacts that will be deployed on AWS.
@@ -16,10 +20,9 @@
     
     - terraform.tfvars: Defines default values for all the variables.
 
-### Notes: 
-The aws_vars.tf has default values provided for certain variables. These can obviously be overridden by specifying those variables and values in the terraform.tfvars file.  The VM-Series AMI is for PAYG2 PAN-OS 8.1.  Change the AMI if you'd like to use BYOL or different PAN-OS version.
 
 ### Credentials and Authentication:
+
 Create a file called aws_creds.tf to provide the AWS ACCESS_KEY and SECRET_KEY.
 
 The structure of the aws_creds.tf file should be as follows:
@@ -61,4 +64,5 @@ When you are finished with your testing or demo, run the following command:
 ![Diagram](https://github.com/kxle6/terraform-gpawsdemo/blob/master/gpawsdemodiagram.jpg)
 
 ### Support:
+
 This template is a fork of the Palo Alto Networks terraform template and is released under an as-is, best effort, support policy. These scripts should be seen as community supported and will contribute our expertise as and when possible. We do not provide technical support or help in using or troubleshooting the components of the project through our normal support options such as Palo Alto Networks support teams, or ASC (Authorized Support Centers) partners and backline support options. The underlying product used (the VM-Series firewall) by the scripts or templates are still supported, but the support is only for the product functionality and not for help in deploying or using the template or script itself. Unless explicitly tagged, all projects or work posted in our GitHub repository (at https://github.com/PaloAltoNetworks) or sites other than our official Downloads page on https://support.paloaltonetworks.com are provided under the best effort policy.
