@@ -40,6 +40,10 @@ If you don't add the S3 bucket name or zone-id, you will be prompted to enter th
 
 `terraform apply`
 
+When you are finished with your testing or demo
+
+'terraform destroy'
+
 ### Notes:
 
 - The intention of this configuration is to show how GlobalProtect can be used for remote users/developers to work on applications/servers in a private subnet within a VPC.
