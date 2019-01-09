@@ -456,6 +456,9 @@ LUTMXKyGb6QcXXr5x1YLNDmQOs68G4f6JuaUNL+p4lFfz5pK+iLBn4LKxhEuO+Td
                   <applications/>
                   <enabled>no</enabled>
                 </exclude-video-traffic>
+                <dns-server>
+                  <primary>8.8.8.8</primary>
+                </dns-server>
               </client>
               <ipsec>
                 <third-party-client>
@@ -2281,6 +2284,9 @@ LUTMXKyGb6QcXXr5x1YLNDmQOs68G4f6JuaUNL+p4lFfz5pK+iLBn4LKxhEuO+Td
                       <show-notification-as>pop-up-message</show-notification-as>
                       <include-app-list>no</include-app-list>
                     </match-message>
+                    <not-match-message>
+                      <show-notification-as>system-tray-balloon</show-notification-as>
+                    </not-match-message>
                   </entry>
                 </hip-notification>
               </entry>
