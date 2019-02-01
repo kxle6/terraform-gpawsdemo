@@ -50,13 +50,35 @@ resource "aws_subnet" "db_subnet" {
   }
 }
 
-resource "aws_network_acl" "aclb765d6d2" {
+resource "aws_network_acl" "mainacl" {
   vpc_id = "${aws_vpc.main.id}"
 
   subnet_ids = [
     "${aws_subnet.public_subnet.id}",
     "${aws_subnet.web_subnet.id}",
   ]
+
+  egress {
+    rule_no    = 100
+    protocol   = "-1"
+    from_port  = "0"
+    to_port    = "0"
+    cidr_block = "0.0.0.0/0"
+    action     = "allow"
+  }
+
+  ingress {
+    rule_no    = 200
+    protocol   = "-1"
+    from_port  = "0"
+    to_port    = "0"
+    cidr_block = "0.0.0.0/0"
+    action     = "allow"
+  }
+
+  tags = {
+    Name = "main"
+  }
 }
 
 resource "aws_route_table" "public_route_table" {
@@ -243,8 +265,8 @@ resource "aws_s3_bucket_object" "content" {
 
 /* Roles, ACLs, Permissions, etc... */
 
-resource "aws_iam_role" "FWBootstrapRole2Tier" {
-  name = "FWBootstrapRole2Tier"
+resource "aws_iam_role" "FWBootstrapRole" {
+  name = "FWBootstrapRole"
 
   assume_role_policy = <<EOF
 {
@@ -262,9 +284,9 @@ resource "aws_iam_role" "FWBootstrapRole2Tier" {
 EOF
 }
 
-resource "aws_iam_role_policy" "FWBootstrapRolePolicy2Tier" {
-  name = "FWBootstrapRolePolicy2Tier"
-  role = "${aws_iam_role.FWBootstrapRole2Tier.id}"
+resource "aws_iam_role_policy" "FWBootstrapRolePolicy" {
+  name = "FWBootstrapRolePolicy"
+  role = "${aws_iam_role.FWBootstrapRole.id}"
 
   policy = <<EOF
 {
@@ -285,28 +307,28 @@ resource "aws_iam_role_policy" "FWBootstrapRolePolicy2Tier" {
 EOF
 }
 
-resource "aws_iam_instance_profile" "FWBootstrapInstanceProfile2Tier" {
-  name = "FWBootstrapInstanceProfile2Tier"
-  role = "${aws_iam_role.FWBootstrapRole2Tier.name}"
+resource "aws_iam_instance_profile" "FWBootstrapInstanceProfile" {
+  name = "FWBootstrapInstanceProfile"
+  role = "${aws_iam_role.FWBootstrapRole.name}"
   path = "/"
 }
 
-resource "aws_network_acl_rule" "acl1" {
-  network_acl_id = "${aws_network_acl.aclb765d6d2.id}"
-  rule_number    = 100
-  egress         = true
-  protocol       = "-1"
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
-}
+#resource "aws_network_acl_rule" "acl1" {
+#  network_acl_id = "${aws_network_acl.aclb765d6d2.id}"
+#  rule_number    = 100
+#  egress         = true
+#  protocol       = "-1"
+#  rule_action    = "allow"
+#  cidr_block     = "0.0.0.0/0"
+#}
 
-resource "aws_network_acl_rule" "acl2" {
-  network_acl_id = "${aws_network_acl.aclb765d6d2.id}"
-  rule_number    = 100
-  protocol       = "-1"
-  rule_action    = "allow"
-  cidr_block     = "0.0.0.0/0"
-}
+#resource "aws_network_acl_rule" "acl2" {
+#  network_acl_id = "${aws_network_acl.aclb765d6d2.id}"
+#  rule_number    = 100
+#  protocol       = "-1"
+#  rule_action    = "allow"
+#  cidr_block     = "0.0.0.0/0"
+#}
 
 resource "aws_security_group" "sgWideOpen" {
   name        = "sgWideOpen"
@@ -351,7 +373,7 @@ resource "aws_security_group" "management_security_group" {
 /* Create the PAN Firewall instance */
 resource "aws_instance" "FWInstance" {
   disable_api_termination              = false
-  iam_instance_profile                 = "${aws_iam_instance_profile.FWBootstrapInstanceProfile2Tier.name}"
+  iam_instance_profile                 = "${aws_iam_instance_profile.FWBootstrapInstanceProfile.name}"
   instance_initiated_shutdown_behavior = "stop"
   ebs_optimized                        = true
   ami                                  = "${var.PANFWRegionMap[var.aws_region]}"
